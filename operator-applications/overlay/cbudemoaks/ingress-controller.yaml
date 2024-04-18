@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: operations-ingress-controller
+  namespace: argocd
+spec:
+  source:
+    helm:
+      values: |
+        controller:
+          image:
+            allowPrivilegeEscalation: "false"
+          admissionWebhooks:
+            patch:
+              nodeSelector:
+                kubernetes.io/os: linux
+          service:
+            externalTrafficPolicy: "Local"
+            annotations:
+              service.beta.kubernetes.io/azure-load-balancer-ipv4: 20.79.215.221
+              service.beta.kubernetes.io/azure-load-balancer-internal: "false"
+          config:
+            enable-modsecurity: "false"
+            enable-owasp-modsecurity-crs: "false"
+          nodeSelector:
+            kubernetes.io/os: linux
+          autoscaling:
+            enabled: "true"
+            minReplicas: 1
+            maxReplicas: 2
