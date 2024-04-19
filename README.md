@@ -41,3 +41,6 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ## Connect Repo
 - Fork Repo [https://github.com/chrburmeister/gitops-workshop](https://github.com/chrburmeister/gitops-workshop)
 - Connect ArgoCD to your repository
+
+# Follow Along
+The rest will be provided during the workshop.
